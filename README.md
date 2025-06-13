@@ -1,104 +1,187 @@
-# Project-Planner
+# 📋 Project-Planner
 
-## Overview
+> A modern, full-stack project management application built with NestJS and Next.js
 
-Project-Planner is a full-stack web application designed to help users manage and plan their projects efficiently. The application includes features for project creation, team management, and user authentication.
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![NestJS](https://img.shields.io/badge/NestJS-E0234E?style=flat&logo=nestjs&logoColor=white)](https://nestjs.com/)
+[![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=flat&logo=prisma&logoColor=white)](https://www.prisma.io/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
-## Table of Contents
+## ✨ Overview
 
-1. [Features](#features)
-2. [Technology Stack](#technology-stack)
-3. [Installation](#installation)
-4. [Usage](#usage)
-5. [File Structure](#file-structure)
-6. [Contributing](#contributing)
-7. [License](#license)
+Project-Planner is a comprehensive project management solution that empowers teams to collaborate effectively, track progress, and deliver projects on time. Built with modern technologies and best practices, it offers an intuitive interface for managing projects, teams, and workflows.
 
-## Features
+## 🚀 Features
 
-- User Authentication (Login and Registration)
-- Project Management (Create, Update, Delete Projects)
-- Team Management (Create, Update, Delete Teams)
-- Assign Team Members to Projects
+### 🔐 Authentication & Security
+- Secure user registration and login
+- JWT-based authentication
+- Role-based access control
+- Password encryption and validation
 
-## Technology Stack
+### 📊 Project Management
+- **Create & Organize**: Set up projects with detailed descriptions, deadlines, and priorities
+- **Progress Tracking**: Monitor project status and completion rates
+- **Task Management**: Break down projects into manageable tasks
+- **Timeline Views**: Visualize project schedules and milestones
 
-### Backend
+### 👥 Team Collaboration
+- **Team Creation**: Build and manage project teams
+- **Member Assignment**: Assign team members to specific projects and tasks
+- **Role Management**: Define roles and permissions for team members
+- **Communication**: Built-in collaboration tools for team coordination
 
-- [NestJS](https://nestjs.com/)
-- [Prisma](https://www.prisma.io/)
-- TypeScript
+### 📱 User Experience
+- **Responsive Design**: Optimized for desktop, tablet, and mobile devices
+- **Real-time Updates**: Live synchronization across all devices
+- **Intuitive UI**: Clean, modern interface built with Tailwind CSS
+- **Dark/Light Mode**: Customizable theme preferences
 
-### Frontend
+## 🛠️ Technology Stack
 
-- [Next.js](https://nextjs.org/)
-- TypeScript
-- [Tailwind CSS](https://tailwindcss.com/)
+### Backend Architecture
+- **[NestJS](https://nestjs.com/)** - Scalable Node.js framework with TypeScript
+- **[Prisma](https://www.prisma.io/)** - Next-generation ORM for database management
+- **TypeScript** - Type-safe development
+- **PostgreSQL** - Robust relational database
+- **JWT** - Secure authentication tokens
 
-## Installation
+### Frontend Stack
+- **[Next.js 14+](https://nextjs.org/)** - React framework with App Router
+- **TypeScript** - Enhanced developer experience with type safety
+- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
+- **React Hooks** - Modern state management
+- **Responsive Design** - Mobile-first approach
+
+## 📦 Installation
 
 ### Prerequisites
 
-- Node.js
-- npm or yarn
-- Docker (optional for database setup)
+Ensure you have the following installed on your system:
 
-### Steps
+- **Node.js** v18.17+ ([Download](https://nodejs.org/))
+- **npm** v9+ or **pnpm** v8+ ([Install pnpm](https://pnpm.io/installation))
+- **PostgreSQL** v13+ ([Download](https://www.postgresql.org/download/))
+- **Git** ([Download](https://git-scm.com/downloads))
 
-1. Clone the repository:
+### Quick Start
 
-    ```bash
-    git clone https://github.com/hamzabenarfa/Project-Planner.git
-    cd Project-Planner
-    ```
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/hamzabenarfa/Project-Planner.git
+   cd Project-Planner
+   ```
 
-2. Install dependencies for both backend and frontend:
+2. **Install dependencies**
+   ```bash
+   # Backend dependencies
+   cd backend
+   pnpm install
+   
+   # Frontend dependencies
+   cd ../frontend
+   pnpm install
+   ```
 
-    ```bash
-    # For backend
-    cd backend
-    npm install
-    # or
-    pnpm install
+3. **Environment Configuration**
+   
+   Create `.env` files in both backend and frontend directories:
+   
+   **Backend (`backend/.env`)**:
+   ```env
+   DATABASE_URL="postgresql://username:password@localhost:5432/project_planner"
+   JWT_SECRET="your-super-secret-jwt-key-here"
+   JWT_EXPIRES_IN="7d"
+   PORT=3001
+   ```
+   
+   **Frontend (`frontend/.env.local`)**:
+   ```env
+   NEXT_PUBLIC_API_URL=http://localhost:3001
+   NEXTAUTH_SECRET="your-nextauth-secret-here"
+   NEXTAUTH_URL=http://localhost:3000
+   ```
 
-    # For frontend
-    cd ../frontend
-    npm install
-    # or
-    pnpm install
-    ```
+4. **Database Setup**
+   ```bash
+   cd backend
+   
+   # Generate Prisma client
+   npx prisma generate
+   
+   # Run database migrations
+   npx prisma migrate dev --name init
+   
+   # (Optional) Seed the database with sample data
+   npx prisma db seed
+   ```
 
-3. Set up the database:
+5. **Start the Development Servers**
+   
+   Open two terminal windows:
+   
+   **Terminal 1 - Backend**:
+   ```bash
+   cd backend
+   pnpm run start:dev
+   ```
+   
+   **Terminal 2 - Frontend**:
+   ```bash
+   cd frontend
+   pnpm run dev
+   ```
 
-    - Ensure you have a PostgreSQL database running.
-    - Configure the database connection in `backend/prisma/schema.prisma`.
-    - Run the migrations:
-
-    ```bash
-    cd backend
-    npx prisma migrate dev
-    ```
-
-4. Run the backend and frontend servers:
-
-    ```bash
-    # In backend directory
-    npm run start:dev
-
-    # In frontend directory
-    npm run dev
-    ```
-
-## Usage
-
-Once the servers are running, you can access the application at `http://localhost:3000`.
+6. **Access the Application**
+   - Frontend: [http://localhost:3000](http://localhost:3000)
+   - Backend API: [http://localhost:3001](http://localhost:3001)
 
 
-## Contributing
+## 🎯 Usage Guide
 
-We welcome contributions to Project-Planner! Please fork the repository and create a pull request for any changes you'd like to make.
+### Getting Started
 
-## License
+1. **Register an Account**: Create your user account or log in if you already have one
+2. **Create Your First Project**: Set up a new project with description, timeline, and goals
+3. **Build Your Team**: Invite team members and assign roles
+4. **Plan & Execute**: Break down your project into tasks and start collaborating
 
-This project is licensed under the MIT License.
+### Key Workflows
 
+**Project Creation**:
+- Navigate to "Projects" → "New Project"
+- Fill in project details, set deadlines, and define objectives
+- Assign team members and set permissions
+
+**Team Management**:
+- Go to "Teams" → "Create Team"
+- Add members by email invitation
+- Define roles and access levels
+
+**Task Tracking**:
+- Within each project, create tasks and subtasks
+- Set priorities, due dates, and assignees
+- Track progress with status updates
+
+
+
+## 📄 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Built with ❤️ by [hamzabenarfa](https://github.com/hamzabenarfa)
+- Inspired by modern project management tools
+- Thanks to all contributors and the open-source community
+
+## 📞 Support
+
+Need help? Have questions?
+
+- 📧 **Email**: [hamzabenarfa4@gmail.com](mailto:hamzabenarfa4@gmail.com)
+- 🐛 **Issues**: [GitHub Issues](https://github.com/hamzabenarfa/Project-Planner/issues)
+- 💬 **Discussions**: [GitHub Discussions](https://github.com/hamzabenarfa/Project-Planner/discussions)
+
+---
